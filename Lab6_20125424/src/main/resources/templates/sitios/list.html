@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<div th:insert="~{fragments/header :: header}"></div>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}"/>
+        <title>Lista Sitios</title>
+    </head>
+    <body>
+    <div th:insert="~{fragments/navbar :: navbar}"></div>
+    <hr>
+
+    <main>
+            <div class="container px-4 py-5">
+                <h1 class="pb-2 mb-3 border-bottom">Lista de sitios</h1>
+                <div class="d-flex mt-3 mb-4">
+                    <a class="btn btn-primary" th:href="@{'/sitios/nuevo'}">Nuevo sitio</a>
+                </div>
+                <div class="alert alert-primary" role="alert" th:if="${msg != null}" th:text="${msg}">
+                    A simple primary alert—check it out!
+                </div>
+                <a class="btn btn-secondary ms-auto" th:href="@{'/'}">Regresar</a>
+
+                <table class="table">
+                    <tr>
+                        <th>#</th>
+                        <th>Nombre</th>
+                        <th>Locación</th>
+                        <th>Fecha de instalación</th>
+                        <th>Latitud</th>
+                        <th>Longitud</th>
+                        <th></th>
+                        <th></th>
+                    </tr>
+                    <tr th:each="sitios, info : ${listarsitios}">
+                        <td th:text="${info.index + 1}"></td>
+                        <td th:text="${sitios.siteName}"></td>
+                        <td th:text="${sitios.locationID.city}+ ' - ' + ${sitios.locationID.country}"></td>
+                        <td th:text="${sitios.installationDate}"></td>
+                        <td th:text="${sitios.latitude}"></td>
+                        <td th:text="${sitios.longitude}"></td>
+
+                        <td><a class="btn btn-primary" th:href="@{'/site/editar' + '?id=' + ${sitios.siteID}}">Editar</a>
+                        </td>
+                        <td><a class="btn btn-danger" th:href="@{'/site/borrar' + '?id=' + ${sitios.siteID}}">Borrar</a>
+                        </td>
+                    </tr>
+                </table>
+                <hr>
+            </div>
+        </main>
+        <script th:src="@{/js/bootstrap.bundle.min.js}"></script>
+    </body>
+</html>

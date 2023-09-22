@@ -1,10 +1,10 @@
 package gtics.lab6_20125424.repository;
 
-import com.example.lab5gtics.entity.Lugares;
+import gtics.lab6_20125424.entity.Site;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface LugaresRepository extends JpaRepository<Lugares, Integer> {
+public interface SiteRepository extends JpaRepository<Site, Integer> {
 }
 
